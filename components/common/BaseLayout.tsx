@@ -23,4 +23,5 @@ const Container = styled.div<{ paddingBottom?: string }>`
 const ChildrenWrapper = styled.div`
   flex-grow: 1;
 `
+
 export default BaseLayout
