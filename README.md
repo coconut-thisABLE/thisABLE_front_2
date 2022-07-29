@@ -1,34 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# thisABLE - frontend 
+This is the frontend repository! <br />
+Please 👉🏻[Click here](https://github.com/coconut-thisABLE)👈 to see the full README. <br />
+Below is part of the entire README. I recommend you go to the link above and see the entire README!
 
-## Getting Started
+---
 
-First, run the development server:
+### 🥥 Demo Video
+[![thumbnail](https://user-images.githubusercontent.com/49112482/160967958-ff06b967-4004-46ce-940f-2360381d8305.png)](https://youtu.be/_5tZRegFqG8)
 
+### 🥥 If you want to download thisABLE..
 ```bash
-npm run dev
-# or
-yarn dev
+git clone https://github.com/coconut-thisABLE/thisABLE_front.git
+cd thisABLE_front/thisable
+npm install
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🥥 Anyway, we recommend visiting the thisABLE [Website](https://coconut-343907.du.r.appspot.com/) and using it! 😀
+- [thisABLE Website](https://coconut-343907.du.r.appspot.com/)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 🥥 Also you can download apk file from [Google Drive](https://drive.google.com/file/d/1QH_kprV0aGLTdOSDjx8_zG4pfMktKyDQ/view?usp=sharing) too!
+- [thisABLE Apk Google Drive](https://drive.google.com/file/d/1QH_kprV0aGLTdOSDjx8_zG4pfMktKyDQ/view?usp=sharing)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### 🥥 You can read thisABLE API Document here!
+- https://api.thisable.xyz/api-docs/
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### 🥥 Used technology
+![image](https://user-images.githubusercontent.com/49112482/160789686-569a05a2-5790-423c-bb5f-bd8be5a808cb.png)
