@@ -10,10 +10,8 @@ Below is part of the entire README. I recommend you go to the link above and see
 
 ### 🥥 If you want to download thisABLE..
 ```bash
-git clone https://github.com/coconut-thisABLE/thisABLE_front.git
-cd thisABLE_front/thisable
-npm install
-npm start
+git clone https://github.com/nami-koko/thisABLE_front_2.git
+yarn
 ```
 
 ### 🥥 Anyway, we recommend visiting the thisABLE [Website](https://coconut-343907.du.r.appspot.com/) and using it! 😀
