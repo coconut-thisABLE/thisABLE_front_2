@@ -1,13 +1,11 @@
-import type { NextPage } from 'next';
-
 import BaseLayout from '../components/common/BaseLayout';
 
-const Home: NextPage = () => {
+const listPage = () => {
   return (
     <BaseLayout>
-      <div>home</div>
+      <div>list page</div>
     </BaseLayout>
   );
 };
 
-export default Home;
+export default listPage;

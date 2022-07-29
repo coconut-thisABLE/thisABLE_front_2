@@ -1,13 +1,11 @@
-import type { NextPage } from 'next';
-
 import BaseLayout from '../components/common/BaseLayout';
 
-const Home: NextPage = () => {
+const mapPage = () => {
   return (
     <BaseLayout>
-      <div>home</div>
+      <div>map page</div>
     </BaseLayout>
   );
 };
 
-export default Home;
+export default mapPage;
