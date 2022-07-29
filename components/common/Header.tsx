@@ -9,7 +9,15 @@ const Header = () => {
 	}
 	return (
 		<Container>
-			<Image src="/images/logo.svg" width={100} height={20} alt="logo" />
+			<Image
+				src="/images/logo.svg"
+				width={100}
+				height={20}
+				alt="logo"
+				onClick={() => {
+					handleMenuClick('/')
+				}}
+			/>
 			<HeaderMenu
 				onClick={() => {
 					handleMenuClick('map')
@@ -36,6 +44,7 @@ const Container = styled.div`
 	align-items: center;
 	border-bottom: #d1cfc8 solid 1px;
 	position: relative;
+	cursor: pointer;
 `
 
 const HeaderMenu = styled.div`
