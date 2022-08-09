@@ -1,9 +1,6 @@
-import BaseLayout from '../components/common/BaseLayout'
 import Link from 'next/link'
-import slopeImg from '../public/images/slope.svg'
-import chargerImg from '../public/images/charger.svg'
-import toiletImg from '../public/images/toilet.svg'
-import elevatorImg from '../public/images/elevator.svg'
+import BaseLayout from '../components/common/BaseLayout'
+import { PlaceInfo } from '../components/common/PlaceInfo'
 
 const listPage = () => {
   const places = {
@@ -25,7 +22,7 @@ const listPage = () => {
         isSlopeExists: false,
       },
       {
-        location_code: '123',
+        location_code: '124',
         location_type: '음식점',
         name: '육쌈냉면 숙대점',
         address: '서울특별시 용산구 청파동 청파로',
@@ -38,7 +35,7 @@ const listPage = () => {
         isSlopeExists: false,
       },
       {
-        location_code: '123',
+        location_code: '125',
         location_type: '음식점',
         name: '코피티암 숙대점',
         address: '서울특별시 용산구 청파동 청파로',
@@ -58,20 +55,7 @@ const listPage = () => {
     places.results.map((place) => {
       return (
         <div key={place.location_code}>
-          <div>
-            <div>
-              <h5>{place.name}</h5>
-              <div>{place.location_type}</div>
-            </div>
-            <div>{place.distance}</div>
-          </div>
-          <div>{place.address}</div>
-          <div>
-            {place.isToiletExists && <img src={toiletImg}></img>}
-            {place.isChargerExists && <img src={chargerImg}></img>}
-            {place.isElevatorExists && <img src={elevatorImg}></img>}
-            {place.isSlopeExists && <img src={slopeImg}></img>}
-          </div>
+          <PlaceInfo place={place} />
         </div>
       )
     })
