@@ -1,16 +1,17 @@
 // 장소 리스트
 export interface IPlaceInfo {
-  location_code: string
-  location_type: string
+  _id: string
+  locationType: string
   name: string
   address: string
   latitude: number
   longitude: number
-  distance: string
+  distance: number
   isToiletExists: boolean
   isChargerExists: boolean
   isElevatorExists: boolean
   isSlopeExists: boolean
+  googlePlaceId: string
 }
 
 export interface IPlaceList {

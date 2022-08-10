@@ -10,7 +10,7 @@ export const PlaceInfo = ({ place }: { place: IPlaceInfo }) => {
       <div>
         <div>
           <h5>{place.name}</h5>
-          <div>{place.location_type}</div>
+          <div>{place.locationType}</div>
         </div>
         <div>{place.distance}</div>
       </div>
