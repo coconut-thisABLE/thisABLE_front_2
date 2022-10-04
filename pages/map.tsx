@@ -1,11 +1,11 @@
-import BaseLayout from '../components/common/BaseLayout';
-
+import BaseLayout from '../components/common/BaseLayout'
+import Map from '../components/map'
 const mapPage = () => {
   return (
     <BaseLayout>
-      <div>map page</div>
+      <Map />
     </BaseLayout>
-  );
-};
+  )
+}
 
-export default mapPage;
+export default mapPage
