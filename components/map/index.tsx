@@ -11,19 +11,19 @@ export type CategoryType = {
 }
 export const CategoryList: CategoryType[] = [
   {
-    title: 'Disabled Toilet',
+    title: '장애인 화장실',
     image: '/images/toilet.svg',
   },
   {
-    title: 'Wheelchair Charger',
+    title: '휠체어 충전기',
     image: '/images/charger.svg',
   },
   {
-    title: 'Elevator',
+    title: '엘리베이터',
     image: '/images/elevator.svg',
   },
-  { title: 'Slope', image: '/images/slope.svg' },
-  { title: 'View all' },
+  { title: '슬로프', image: '/images/slope.svg' },
+  { title: '모두 보기' },
 ]
 
 const Map = () => {
@@ -37,7 +37,7 @@ const Map = () => {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API as string,
   })
   const handleCategoryClick = (category: string) => {
-    category === 'View all' ? router.push('/list') : setCategory(category)
+    category === '모두 보기' ? router.push('/list') : setCategory(category)
   }
 
   return isLoaded ? (
