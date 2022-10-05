@@ -1,8 +1,9 @@
+import { NextPage } from 'next'
 import Link from 'next/link'
 import BaseLayout from '../components/common/BaseLayout'
 import { PlaceInfo } from '../components/common/PlaceInfo'
 
-const listPage = () => {
+const ListPage: NextPage = () => {
   const places = {
     totalPage: 4,
     currentPage: 1,
@@ -73,4 +74,4 @@ const listPage = () => {
   )
 }
 
-export default listPage
+export default ListPage
