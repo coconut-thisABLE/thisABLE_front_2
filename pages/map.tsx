@@ -1,6 +1,8 @@
+import { NextPage } from 'next'
 import BaseLayout from '../components/common/BaseLayout'
 import Map from '../components/map'
-const mapPage = () => {
+
+const mapPage:NextPage = () => {
   return (
     <BaseLayout>
       <Map />
