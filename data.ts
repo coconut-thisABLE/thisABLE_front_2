@@ -28,8 +28,8 @@ export const places = {
       distance: 0.5,
       isToiletExists: true,
       isChargerExists: true,
-      isElevatorExists: false,
-      isSlopeExists: false,
+      isElevatorExists: true,
+      isSlopeExists: true,
       googlePlaceId: 'ChIJN2x0fu2ifDUR51BupseGYmE',
     },
     {
