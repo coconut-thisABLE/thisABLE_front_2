@@ -26,7 +26,7 @@ const PlaceInfo = ({ place }: { place: IPlaceInfo }) => {
           </NameTypeSection>
           <Text color={conceptColors.mainOrange}>{place.distance}km</Text>
         </DefaultInfoSection>
-        <Text size={0.8} color="#b0b0b0">
+        <Text color="#b0b0b0" size={0.8}>
           {place.address}
         </Text>
         <IconsSection>
@@ -61,7 +61,7 @@ const NameTypeSection = styled.section`
 `
 const IconsSection = styled.section`
   display: flex;
-  margin-top: 8px;
+  margin-top: 0.5rem;
   justify-content: flex-end;
 `
 const IconWrapper = styled.div`

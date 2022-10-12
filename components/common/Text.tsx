@@ -8,7 +8,7 @@ type TextType = {
   bold?: boolean
 }
 
-const Text = ({ children, color, size, bold }: TextType) => {
+const Text = ({ children, color, size = 1, bold }: TextType) => {
   return (
     <StyledText color={color} size={size} bold={bold}>
       {children}
@@ -16,13 +16,9 @@ const Text = ({ children, color, size, bold }: TextType) => {
   )
 }
 
-Text.defaultProps = {
-  size: 1,
-}
-
 const StyledText = styled.div<TextType>`
-  font-size: ${({ size }) => size}rem;
   color: ${({ color }) => color};
+  font-size: ${({ size }) => size}rem;
   font-weight: ${({ bold }) => bold && 'bold'};
 `
 
