@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import { IPlaceInfo } from '../../types'
+import { PlaceInfoType } from '../../types'
 import { conceptColors } from './BaseLayout'
 import Text from './Text'
 
-const PlaceInfo = ({ place }: { place: IPlaceInfo }) => {
+const PlaceInfo = ({ place }: { place: PlaceInfoType }) => {
   const IconImage = ({ src }: { src: string }) => (
     <IconWrapper>
       <Image src={src} width={30} height={30} />
@@ -17,7 +17,7 @@ const PlaceInfo = ({ place }: { place: IPlaceInfo }) => {
       <PlaceInfoContainer>
         <DefaultInfoSection>
           <NameTypeSection>
-            <Text bold size={1.1}>
+            <Text size={1.1} bold>
               {place.name}
             </Text>
             <Text color="#00B8E0" size={0.8}>

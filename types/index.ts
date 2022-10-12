@@ -1,5 +1,5 @@
 // 장소 리스트
-export interface IPlaceInfo {
+export interface PlaceInfoType {
   _id: string
   locationType: string
   name: string
@@ -14,9 +14,9 @@ export interface IPlaceInfo {
   googlePlaceId: string
 }
 
-export interface IPlaceList {
+export interface PlaceListType {
   totalPage: number
   currentPage: number
   nextUrl: string
-  results: IPlaceInfo[]
+  results: PlaceInfoType[]
 }
