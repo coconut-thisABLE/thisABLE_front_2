@@ -7,7 +7,9 @@ import Text from './Text'
 
 const PlaceInfo = ({ place }: { place: IPlaceInfo }) => {
   const IconImage = ({ src }: { src: string }) => (
-    <Image src={src} width={30} height={30} />
+    <IconWrapper>
+      <Image src={src} width={30} height={30} />
+    </IconWrapper>
   )
 
   return (
@@ -61,9 +63,9 @@ const IconsSection = styled.section`
   display: flex;
   margin-top: 8px;
   justify-content: flex-end;
-  img {
-    padding: 0 0.1rem !important;
-  }
+`
+const IconWrapper = styled.div`
+  margin: 0 0.1rem;
 `
 
 export default PlaceInfo
