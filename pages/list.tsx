@@ -1,76 +1,32 @@
+import { NextPage } from 'next'
 import Link from 'next/link'
+import { places } from '../data'
 import BaseLayout from '../components/common/BaseLayout'
-import { PlaceInfo } from '../components/common/PlaceInfo'
+import PlaceInfo from '../components/common/PlaceInfo'
+import styled from '@emotion/styled'
 
-const listPage = () => {
-  const places = {
-    totalPage: 4,
-    currentPage: 1,
-    nextUrl: '?page=2',
-    results: [
-      {
-        _id: '123',
-        locationType: '음식점',
-        name: '몬플몬플 숙대점',
-        address: '서울특별시 용산구 청파동 청파로',
-        latitude: 37.544127,
-        longitude: 126.9667812,
-        distance: 0.5,
-        isToiletExists: true,
-        isChargerExists: true,
-        isElevatorExists: false,
-        isSlopeExists: false,
-        googlePlaceId: 'ChIJN2x0fu2ifDUR51BupseGYmE',
-      },
-      {
-        _id: '124',
-        locationType: '음식점',
-        name: '육쌈냉면 숙대점',
-        address: '서울특별시 용산구 청파동 청파로',
-        latitude: 37.544127,
-        longitude: 126.9667812,
-        distance: 0.5,
-        isToiletExists: true,
-        isChargerExists: true,
-        isElevatorExists: false,
-        isSlopeExists: false,
-        googlePlaceId: 'ChIJN2x0fu2ifDUR51BupseGYmE',
-      },
-      {
-        _id: '125',
-        locationType: '음식점',
-        name: '코피티암 숙대점',
-        address: '서울특별시 용산구 청파동 청파로',
-        latitude: 37.544127,
-        longitude: 126.9667812,
-        distance: 0.5,
-        isToiletExists: true,
-        isChargerExists: true,
-        isElevatorExists: false,
-        isSlopeExists: false,
-        googlePlaceId: 'ChIJN2x0fu2ifDUR51BupseGYmE',
-      },
-    ],
-  }
-
-  const renderPlaces =
-    places &&
-    places.results.map((place) => {
-      return (
-        <div key={place._id}>
-          <PlaceInfo place={place} />
-        </div>
-      )
-    })
-
+const ListPage: NextPage = () => {
   return (
     <BaseLayout>
       <Link href="/">
         <div>View Map</div>
       </Link>
-      {renderPlaces}
+      {places?.results?.map((place) => (
+        <PlaceListContainer>
+          <PlaceInfo place={place} key={place._id} />
+        </PlaceListContainer>
+      ))}
     </BaseLayout>
   )
 }
 
-export default listPage
+const PlaceListContainer = styled.div`
+  border: 2px solid #e599b3;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin: 1rem 1.2rem;
+  padding: 0.6rem;
+  min-width: 18rem;
+`
+
+export default ListPage

@@ -1,6 +1,13 @@
 import Header from './Header'
 import styled from '@emotion/styled'
 
+export const conceptColors = {
+  mainPink: '#CB3267',
+  secondPink: '#E599B3',
+  mainOrange: '#F0A044',
+  secondOrange: '#F8D0A2',
+}
+
 type BaseLayoutProps = {
   children: React.ReactNode
 }
