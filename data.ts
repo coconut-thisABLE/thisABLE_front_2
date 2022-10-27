@@ -48,3 +48,22 @@ export const places = {
     },
   ],
 }
+
+// 장소 디테일
+export const placeDetail = {
+  message: 'Retrieve Location By Id Success',
+  response: {
+    _id: 1,
+    locationType: 'subway',
+    name: '국립중앙박물관',
+    address: '137 Seobinggo-ro',
+    latitude: 37.5238506,
+    longitude: 126.9804702,
+    distance: 1.5,
+    isToiletExists: false,
+    isChargerExists: false,
+    isElevatorExists: false,
+    isSlopeExists: false,
+    googlePlaceId: 'ChIJN2x0fu2ifDUR51BupseGYmE',
+  },
+}

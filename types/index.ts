@@ -20,3 +20,9 @@ export interface PlaceListType {
   nextUrl: string
   results: PlaceInfoType[]
 }
+
+// 장소 디테일
+export interface PlaceDetailType {
+  message: string
+  response: PlaceInfoType
+}
