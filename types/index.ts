@@ -1,6 +1,6 @@
 // 장소 리스트
 export interface PlaceInfoType {
-  _id: string
+  _id: number
   locationType: string
   name: string
   address: string

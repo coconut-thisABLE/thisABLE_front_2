@@ -5,7 +5,7 @@ export const places = {
   nextUrl: '?page=2',
   results: [
     {
-      _id: '123',
+      _id: 123,
       locationType: '음식점',
       name: '몬플몬플 숙대점',
       address: '서울특별시 용산구 청파동 청파로',
@@ -19,7 +19,7 @@ export const places = {
       googlePlaceId: 'ChIJN2x0fu2ifDUR51BupseGYmE',
     },
     {
-      _id: '124',
+      _id: 124,
       locationType: '음식점',
       name: '육쌈냉면 숙대점',
       address: '서울특별시 용산구 청파동 청파로',
@@ -33,7 +33,7 @@ export const places = {
       googlePlaceId: 'ChIJN2x0fu2ifDUR51BupseGYmE',
     },
     {
-      _id: '125',
+      _id: 125,
       locationType: '음식점',
       name: '코피티암 숙대점',
       address: '서울특별시 용산구 청파동 청파로',
@@ -60,10 +60,10 @@ export const placeDetail = {
     latitude: 37.5238506,
     longitude: 126.9804702,
     distance: 1.5,
-    isToiletExists: false,
-    isChargerExists: false,
-    isElevatorExists: false,
-    isSlopeExists: false,
+    isToiletExists: true,
+    isChargerExists: true,
+    isElevatorExists: true,
+    isSlopeExists: true,
     googlePlaceId: 'ChIJN2x0fu2ifDUR51BupseGYmE',
   },
 }
