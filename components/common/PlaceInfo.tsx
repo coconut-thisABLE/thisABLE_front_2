@@ -49,4 +49,6 @@ const NameTypeSection = styled.section`
   }
 `
 
+export { NameTypeSection }
+
 export default PlaceInfo
