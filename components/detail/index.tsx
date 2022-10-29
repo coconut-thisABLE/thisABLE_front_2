@@ -2,6 +2,7 @@ import Link from 'next/link'
 import styled from '@emotion/styled'
 import { placeDetail } from '../../data'
 import { PlaceInfoType } from '../../types'
+import FacilitiesIcons from '../common/FacilitiesIcons'
 import { NameTypeSection } from '../common/PlaceInfo'
 import Text from '../common/Text'
 
@@ -24,6 +25,7 @@ const Detail = () => {
         <Text color="#b0b0b0" size={0.8}>
           {place.address}
         </Text>
+        <FacilitiesIcons place={place} size={50} hasDescription />
       </DetailInfoSection>
     </section>
   )
@@ -33,7 +35,7 @@ const DetailInfoSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  > div:nth-child(2) {
+  > div:nth-of-type(2) {
     margin-top: 1rem;
   }
 `
