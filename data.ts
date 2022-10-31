@@ -67,3 +67,9 @@ export const placeDetail = {
     googlePlaceId: 'ChIJN2x0fu2ifDUR51BupseGYmE',
   },
 }
+
+// 리뷰 평균 및 개수
+export const reviewAverageCount = {
+  count: 5,
+  average: 4.5,
+}

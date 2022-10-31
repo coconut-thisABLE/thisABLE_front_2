@@ -26,3 +26,9 @@ export interface PlaceDetailType {
   message: string
   response: PlaceInfoType
 }
+
+// 리뷰 평균 및 개수
+export interface ReviewAverageCountType {
+  count: number
+  average: number
+}
