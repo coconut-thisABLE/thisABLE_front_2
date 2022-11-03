@@ -16,7 +16,7 @@ const Text = ({ children, color, size = 1, bold }: TextType) => {
   )
 }
 
-const StyledText = styled.div<TextType>`
+export const StyledText = styled.div<TextType>`
   color: ${({ color }) => color};
   font-size: ${({ size }) => size}rem;
   font-weight: ${({ bold }) => bold && 'bold'};

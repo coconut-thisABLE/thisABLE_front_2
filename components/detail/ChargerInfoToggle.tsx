@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { chargerDetail } from '../../data'
+import Text from '../common/Text'
 import ToggleView from '../common/ToggleView'
 
 const ChargerInfoToggle = () => {
@@ -45,11 +46,11 @@ const ChargerInfoToggle = () => {
   return (
     <ChargerInfoToggleSection>
       <ToggleView title="휠체어 충전기 세부 정보 보기">
-        {ChargerInfoList.map((chargerInfo: ChargerInfoType) => (
-          <>
-            <div>{chargerInfo.title}</div>
-            <div>{chargerInfo.data}</div>
-          </>
+        {ChargerInfoList.map((chargerInfo: ChargerInfoType, index: number) => (
+          <ChargerInfoWrapper key={index}>
+            <Text bold>{chargerInfo.title}</Text>
+            <ChargerDataText>{chargerInfo.data}</ChargerDataText>
+          </ChargerInfoWrapper>
         ))}
       </ToggleView>
     </ChargerInfoToggleSection>
@@ -59,6 +60,15 @@ const ChargerInfoToggle = () => {
 const ChargerInfoToggleSection = styled.section`
   display: flex;
   justify-content: center;
+  margin: 1rem 0;
+`
+const ChargerInfoWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0.1rem;
+`
+const ChargerDataText = styled.div`
+  margin-left: 3rem;
 `
 
 export default ChargerInfoToggle
