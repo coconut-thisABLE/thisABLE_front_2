@@ -27,6 +27,31 @@ export interface PlaceDetailType {
   response: PlaceInfoType
 }
 
+// 충전기 디테일
+export interface chargerDataType {
+  locationId: number
+  airinjectoryn: string
+  moblphonchrstnyn: string
+  smtmuseco: string
+  weekdayoperopenhhmm: string
+  weekdayopercolsehhmm: string
+  satoperoperopenhhmm: string
+  satoperclosehhmm: string
+  holidayoperopenhhmm: string
+  holidaycloseopenhhmm: string
+  fcltynm: string
+  institutionnm: string
+  institutionphonenumber: string
+  instllcdesc: string
+  work_dttm: string
+  referencedate: string
+}
+
+export interface chargerDetailType {
+  message: string
+  data: chargerDataType
+}
+
 // 리뷰 평균 및 개수
 export interface ReviewAverageCountType {
   count: number

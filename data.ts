@@ -68,6 +68,29 @@ export const placeDetail = {
   },
 }
 
+// 충전기 디테일
+export const chargerDetail = {
+  message: 'get charger info success',
+  data: {
+    locationId: 12,
+    airinjectoryn: 'Y',
+    moblphonchrstnyn: 'Y',
+    smtmuseco: '2',
+    weekdayoperopenhhmm: '09:00',
+    weekdayopercolsehhmm: '18:00',
+    satoperoperopenhhmm: '00:00',
+    satoperclosehhmm: '00:00',
+    holidayoperopenhhmm: '00:00',
+    holidaycloseopenhhmm: '00:00',
+    fcltynm: '용산행복장애인자립생활센터',
+    institutionnm: '용산행복장애인자립생활센터',
+    institutionphonenumber: '02-704-0420',
+    instllcdesc: '센터 1층',
+    work_dttm: '1646631453000',
+    referencedate: '2021-09-15',
+  },
+}
+
 // 리뷰 평균 및 개수
 export const reviewAverageCount = {
   count: 5,
