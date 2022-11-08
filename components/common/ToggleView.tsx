@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 import MuiAccordion, { AccordionProps } from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
@@ -7,24 +7,18 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-const ToggleView = ({
-  children,
-  title,
-}: {
+type ToggleViewType = {
   children: React.ReactNode
   title: string
-}) => {
-  const [expanded, setExpanded] = React.useState<string | false>(false)
+}
 
-  const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false)
-    }
+const ToggleView = ({ children, title }: ToggleViewType) => {
+  const [isExpanded, setIsExpanded] = useState<boolean>(false)
 
   return (
     <Accordion
-      expanded={expanded === 'panel1'}
-      onChange={handleChange('panel1')}
+      expanded={isExpanded}
+      onChange={() => setIsExpanded(!isExpanded)}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         {title}
