@@ -2,25 +2,26 @@ import Image from 'next/image'
 import styled from '@emotion/styled'
 import { PlaceInfoType } from '../../types'
 
+type FacilitiesIconsType = {
+  place: PlaceInfoType
+  size: number
+  hasDescription?: boolean
+}
+
+type IconImageType = {
+  src: string
+  description: string
+}
+
 // 시설 정보 아이콘 뷰
 const FacilitiesIcons = ({
   place,
   size,
-  hasDescription,
-}: {
-  place: PlaceInfoType
-  size: number
-  hasDescription: boolean
-}) => {
-  const IconImage = ({
-    src,
-    description,
-  }: {
-    src: string
-    description: string
-  }) => (
+  hasDescription = false,
+}: FacilitiesIconsType) => {
+  const IconImage = ({ src, description }: IconImageType) => (
     <IconWrapper hasDescription={hasDescription}>
-      <Image src={src} width={size} height={size} />
+      <Image src={src} width={size} height={size} alt={description} />
       {hasDescription && <DescriptionText>{description}</DescriptionText>}
     </IconWrapper>
   )

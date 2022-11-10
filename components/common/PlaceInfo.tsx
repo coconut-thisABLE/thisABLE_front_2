@@ -23,7 +23,7 @@ const PlaceInfo = ({ place }: { place: PlaceInfoType }) => {
         <Text color="#b0b0b0" size={0.8}>
           {place.address}
         </Text>
-        <FacilitiesIcons place={place} size={30} hasDescription={false} />
+        <FacilitiesIcons place={place} size={30} />
       </PlaceInfoContainer>
     </Link>
   )
