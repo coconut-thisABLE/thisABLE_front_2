@@ -31,7 +31,8 @@ const PlaceInfo = ({ place }: { place: PlaceInfoType }) => {
 
 const PlaceInfoContainer = styled.div`
   margin: 0.2rem;
-  div {
+  div,
+  p {
     margin-bottom: 0.2rem;
   }
 `
@@ -44,8 +45,8 @@ const NameTypeSection = styled.section`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  div:last-child {
-    margin-left: 0.4rem;
+  p:first-of-type {
+    margin-right: 0.4rem;
   }
 `
 

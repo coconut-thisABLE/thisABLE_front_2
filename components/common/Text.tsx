@@ -16,10 +16,12 @@ const Text = ({ children, color, size = 1, bold }: TextType) => {
   )
 }
 
-export const StyledText = styled.div<TextType>`
+export const StyledText = styled.p<TextType>`
   color: ${({ color }) => color};
   font-size: ${({ size }) => size}rem;
   font-weight: ${({ bold }) => bold && 'bold'};
+  margin-block-start: 0;
+  margin-block-end: 0;
 `
 
 export default Text
