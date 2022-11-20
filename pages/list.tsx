@@ -12,8 +12,8 @@ const ListPage: NextPage = () => {
         <div>View Map</div>
       </Link>
       {places?.results?.map((place) => (
-        <PlaceListContainer>
-          <PlaceInfo place={place} key={place._id} />
+        <PlaceListContainer key={place._id}>
+          <PlaceInfo place={place} />
         </PlaceListContainer>
       ))}
     </BaseLayout>
