@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material'
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import Image from 'next/image'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
@@ -8,6 +8,10 @@ import { useRouter } from 'next/router'
 export type CategoryType = {
   title: string
   image?: string
+}
+type MapPropsType = {
+  width?: number
+  setChosenLocation?: Dispatch<SetStateAction<string>>
 }
 export const CategoryList: CategoryType[] = [
   {
@@ -26,7 +30,10 @@ export const CategoryList: CategoryType[] = [
   { title: '모두 보기' },
 ]
 
-const Map = () => {
+const Map = ({
+  width = 100,
+  setChosenLocation = () => console.log('clicked'),
+}: MapPropsType) => {
   const initialLat = 37.544127
   const initialLng = 126.9667812
   const [lat, setLat] = useState<number>(initialLat)
@@ -40,33 +47,39 @@ const Map = () => {
     category === '모두 보기' ? router.push('/list') : setCategory(category)
   }
 
+  //TODO: add onClick to GoogleMap - use placeId
   return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={{ height: '94vh', width: '100%' }}
-      zoom={18}
-      center={{ lat: +lat, lng: +lng }}
-    >
-      <FilterContainer>
-        {CategoryList.map((category: CategoryType) => (
-          <FilterButton
-            key={category.title}
-            onClick={() => handleCategoryClick(category.title)}
-          >
-            {category.image && (
-              <Image src={category.image as string} width={20} height={20} />
-            )}
-            <FilterText>{category.title}</FilterText>
-          </FilterButton>
-        ))}
-      </FilterContainer>
-      {/* {renderMarker} */}
-      <Marker position={{ lat: +lat, lng: +lng }} icon="images/myself.svg" />;
-    </GoogleMap>
+    <MapContainer width={width} onClick={() => setChosenLocation('location clicked')}>
+      <GoogleMap
+        mapContainerStyle={{ height: '94vh', width: '100%' }}
+        zoom={18}
+        center={{ lat: +lat, lng: +lng }}
+      >
+        <FilterContainer>
+          {CategoryList.map((category: CategoryType) => (
+            <FilterButton
+              key={category.title}
+              onClick={() => handleCategoryClick(category.title)}
+            >
+              {category.image && (
+                <Image src={category.image as string} width={20} height={20} />
+              )}
+              <FilterText>{category.title}</FilterText>
+            </FilterButton>
+          ))}
+        </FilterContainer>
+        {/* {renderMarker} */}
+        <Marker position={{ lat: +lat, lng: +lng }} icon="images/myself.svg" />;
+      </GoogleMap>
+    </MapContainer>
   ) : (
     <CircularProgress />
   )
 }
 
+const MapContainer = styled.div<{ width: number }>`
+  width: ${({ width }) => width}%;
+`
 const FilterContainer = styled.div`
   display: flex;
   align-items: center;
