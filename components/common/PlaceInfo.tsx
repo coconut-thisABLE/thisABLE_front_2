@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import styled from '@emotion/styled'
 import { PlaceInfoType } from '../../types'
 import { conceptColors } from './BaseLayout'
@@ -7,30 +6,29 @@ import FacilitiesIcons from './FacilitiesIcons'
 
 const PlaceInfo = ({ place }: { place: PlaceInfoType }) => {
   return (
-    <Link href={`detail/${place._id}`}>
-      <PlaceInfoContainer>
-        <DefaultInfoSection>
-          <NameTypeSection>
-            <Text size={1.1} bold>
-              {place.name}
-            </Text>
-            <Text color="#00B8E0" size={0.8}>
-              {place.locationType}
-            </Text>
-          </NameTypeSection>
-          <Text color={conceptColors.mainOrange}>{place.distance}km</Text>
-        </DefaultInfoSection>
-        <Text color="#b0b0b0" size={0.8}>
-          {place.address}
-        </Text>
-        <FacilitiesIcons place={place} size={30} />
-      </PlaceInfoContainer>
-    </Link>
+    <PlaceInfoContainer>
+      <DefaultInfoSection>
+        <NameTypeSection>
+          <Text size={1.1} bold>
+            {place.name}
+          </Text>
+          <Text color="#00B8E0" size={0.8}>
+            {place.locationType}
+          </Text>
+        </NameTypeSection>
+        <Text color={conceptColors.mainOrange}>{place.distance}km</Text>
+      </DefaultInfoSection>
+      <Text color="#b0b0b0" size={0.8}>
+        {place.address}
+      </Text>
+      <FacilitiesIcons place={place} size={30} />
+    </PlaceInfoContainer>
   )
 }
 
 const PlaceInfoContainer = styled.div`
   margin: 0.2rem;
+  cursor: pointer;
   div,
   p {
     margin-bottom: 0.2rem;
