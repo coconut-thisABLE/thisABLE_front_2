@@ -9,15 +9,15 @@ import { Dispatch, SetStateAction } from 'react'
 import { useRouter } from 'next/router'
 
 type DetailPropsType = {
-  setShowDetail?: Dispatch<SetStateAction<boolean>>
+  setIsDetailOpen?: Dispatch<SetStateAction<boolean>>
 }
-const Detail = ({ setShowDetail }: DetailPropsType) => {
+const Detail = ({ setIsDetailOpen }: DetailPropsType) => {
   const place: PlaceInfoType = placeDetail.response
   // TODO: 동적 id와 실데이터 연결
   const router = useRouter()
   return (
     <DetailContainer>
-      <button onClick={() => (setShowDetail ? setShowDetail(false) : router.push('/'))}>
+      <button onClick={() => (setIsDetailOpen ? setIsDetailOpen(false) : router.push('/'))}>
         ◀ 뒤로 가기
       </button>
       {/* TODO: 모바일 환경에서는 /list (리스트로 가기) */}
