@@ -2,26 +2,31 @@ import styled from '@emotion/styled'
 import PlaceInfo from './PlaceInfo'
 import { PlaceInfoType } from '../../types'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import Detail from '../detail'
 import { usePlaceListQuery } from '../../api/usePlaceListQuery'
 
-const PlaceList = () => {
+type PlaceListPropsType = {
+  setIsDetailOpen?: Dispatch<SetStateAction<boolean>>
+  isDetailOpen?: boolean
+}
+
+const PlaceList = ({ setIsDetailOpen, isDetailOpen }: PlaceListPropsType) => {
   const router = useRouter()
-  const [showDetail, setShowDetail] = useState<boolean>(false)
+  const isHomePage = router.pathname === '/' && setIsDetailOpen
   const { data: placeListData } = usePlaceListQuery(1)
   const places = placeListData.results
-  return showDetail ? (
-    <Detail setShowDetail={setShowDetail} />
+  return isDetailOpen ? (
+    <Detail setIsDetailOpen={setIsDetailOpen} />
   ) : (
     <div>
       {places?.map((place: PlaceInfoType) => (
         <PlaceListContainer
           key={place._id}
           onClick={() =>
-            router.pathname !== '/'
-              ? router.push(`detail/${place._id}`)
-              : setShowDetail(true)
+            isHomePage
+              ? setIsDetailOpen(true)
+              : router.push(`detail/${place._id}`)
           }
         >
           <PlaceInfo place={place} />
