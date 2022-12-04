@@ -10,7 +10,6 @@ export type CategoryType = {
   image?: string
 }
 type MapPropsType = {
-  width?: number
   setChosenLocation?: Dispatch<SetStateAction<string>>
 }
 export const CategoryList: CategoryType[] = [
@@ -31,7 +30,6 @@ export const CategoryList: CategoryType[] = [
 ]
 
 const Map = ({
-  width = 100,
   setChosenLocation = () => console.log('clicked'),
 }: MapPropsType) => {
   const initialLat = 37.544127
@@ -47,39 +45,37 @@ const Map = ({
     category === '모두 보기' ? router.push('/list') : setCategory(category)
   }
 
-  //TODO: add onClick to GoogleMap - use placeId
+  //TODO: fix onClick  - use placeId
   return isLoaded ? (
-    <MapContainer width={width} onClick={() => setChosenLocation('location clicked')}>
-      <GoogleMap
-        mapContainerStyle={{ height: '94vh', width: '100%' }}
-        zoom={18}
-        center={{ lat: +lat, lng: +lng }}
-      >
-        <FilterContainer>
-          {CategoryList.map((category: CategoryType) => (
-            <FilterButton
-              key={category.title}
-              onClick={() => handleCategoryClick(category.title)}
-            >
-              {category.image && (
-                <Image src={category.image as string} width={20} height={20} />
-              )}
-              <FilterText>{category.title}</FilterText>
-            </FilterButton>
-          ))}
-        </FilterContainer>
-        {/* {renderMarker} */}
-        <Marker position={{ lat: +lat, lng: +lng }} icon="images/myself.svg" />;
-      </GoogleMap>
-    </MapContainer>
+    <GoogleMap
+      mapContainerStyle={{ height: '94vh', width: '100%' }}
+      zoom={18}
+      center={{ lat: +lat, lng: +lng }}
+      onClick={() => {
+        setChosenLocation(Math.random().toString())
+      }}
+    >
+      <FilterContainer>
+        {CategoryList.map((category: CategoryType) => (
+          <FilterButton
+            key={category.title}
+            onClick={() => handleCategoryClick(category.title)}
+          >
+            {category.image && (
+              <Image src={category.image as string} width={20} height={20} />
+            )}
+            <FilterText>{category.title}</FilterText>
+          </FilterButton>
+        ))}
+      </FilterContainer>
+      {/* {renderMarker} */}
+      <Marker position={{ lat: +lat, lng: +lng }} icon="images/myself.svg" />;
+    </GoogleMap>
   ) : (
     <CircularProgress />
   )
 }
 
-const MapContainer = styled.div<{ width: number }>`
-  width: ${({ width }) => width}%;
-`
 const FilterContainer = styled.div`
   display: flex;
   align-items: center;
