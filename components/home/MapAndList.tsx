@@ -1,20 +1,26 @@
-import styled from "@emotion/styled"
-import { useState } from "react"
-import PlaceList from "../common/PlaceList"
-import Detail from "../detail"
-import Map from "../map"
+import styled from '@emotion/styled'
+import { useEffect, useState } from 'react'
+import PlaceList from '../common/PlaceList'
+import Detail from '../detail'
+import Map from '../map'
 
 const MapAndList = () => {
   const [clickedLocation, setClickedLocation] = useState<string>('')
-  const [showDetail, setShowDetail] = useState<boolean>(false)
-  
+  const [isDetailOpen, setIsDetailOpen] = useState<boolean>(false)
+
+  useEffect(()=>{
+    setIsDetailOpen(!!clickedLocation)
+  },[clickedLocation])
   return (
     <Container>
-      <Map width={70} setChosenLocation={setClickedLocation} />
-      {clickedLocation || showDetail ? (
-        <Detail setShowDetail={setShowDetail} />
+      <Map setChosenLocation={setClickedLocation} />
+      {isDetailOpen ? (
+        <Detail setIsDetailOpen={setIsDetailOpen} />
       ) : (
-        <PlaceList />
+        <PlaceList
+          isDetailOpen={isDetailOpen}
+          setIsDetailOpen={setIsDetailOpen}
+        />
       )}
     </Container>
   )
