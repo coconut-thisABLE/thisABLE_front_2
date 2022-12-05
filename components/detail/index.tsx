@@ -6,6 +6,7 @@ import FacilitiesIcons from '../common/FacilitiesIcons'
 import { NameTypeSection } from '../common/PlaceInfo'
 import Text, { StyledText } from '../common/Text'
 import ChargerInfoToggle from './ChargerInfoToggle'
+import ReviewList from './ReviewList'
 
 const Detail = () => {
   const place: PlaceInfoType = placeDetail.response
@@ -40,6 +41,7 @@ const Detail = () => {
       </DetailInfoSection>
       <ChargerInfoToggle />
       {/* <ReviewPage locationId={id} /> */}
+      <ReviewList />
     </DetailContainer>
   )
 }
