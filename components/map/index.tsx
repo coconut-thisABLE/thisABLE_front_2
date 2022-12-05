@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material'
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import Image from 'next/image'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
@@ -8,6 +8,9 @@ import { useRouter } from 'next/router'
 export type CategoryType = {
   title: string
   image?: string
+}
+type MapPropsType = {
+  setChosenLocation?: Dispatch<SetStateAction<string>>
 }
 export const CategoryList: CategoryType[] = [
   {
@@ -26,7 +29,9 @@ export const CategoryList: CategoryType[] = [
   { title: '모두 보기' },
 ]
 
-const Map = () => {
+const Map = ({
+  setChosenLocation = () => console.log('clicked'),
+}: MapPropsType) => {
   const initialLat = 37.544127
   const initialLng = 126.9667812
   const [lat, setLat] = useState<number>(initialLat)
@@ -40,11 +45,15 @@ const Map = () => {
     category === '모두 보기' ? router.push('/list') : setCategory(category)
   }
 
+  //TODO: fix onClick  - use placeId
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={{ height: '94vh', width: '100%' }}
       zoom={18}
       center={{ lat: +lat, lng: +lng }}
+      onClick={() => {
+        setChosenLocation(Math.random().toString())
+      }}
     >
       <FilterContainer>
         {CategoryList.map((category: CategoryType) => (
