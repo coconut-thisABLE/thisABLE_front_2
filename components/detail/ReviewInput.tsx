@@ -2,12 +2,17 @@ import styled from '@emotion/styled'
 import React, { useState, useEffect } from 'react'
 import Text from '../common/Text'
 
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormControl from '@mui/material/FormControl'
+
 const ReviewInput = () => {
   const [userType, setUserType] = useState('anonymous')
   const [inputValue, setInputValue] = useState('')
 
   return (
-    <>
+    <ReviewInputContainer>
       <ReviewInputHeader>
         <Text size={1.2} bold>
           리뷰
@@ -15,28 +20,29 @@ const ReviewInput = () => {
         {/* <Rating onClick={handleRating} ratingValue={rating} /> */}
       </ReviewInputHeader>
       <UserInfo>
-        <input
-          type="radio"
-          name="radio-group"
-          value="disabled"
-          onClick={() => setUserType('disabled')}
-        />
-        <label>장애인</label>
-        <input
-          type="radio"
-          name="radio-group"
-          value="abled"
-          onClick={() => setUserType('abled')}
-        />
-        <label>비장애인</label>
-        <input
-          type="radio"
-          name="radio-group"
-          value="anonymous"
-          defaultChecked
-          onClick={() => setUserType('anonymous')}
-        />
-        <label>익명</label>
+        <FormControl>
+          <RadioGroup
+            row
+            value={userType}
+            onChange={(e) => setUserType(e.target.value)}
+          >
+            <FormControlLabel
+              value="disabled"
+              control={<Radio />}
+              label="장애인"
+            />
+            <FormControlLabel
+              value="able"
+              control={<Radio />}
+              label="비장애인"
+            />
+            <FormControlLabel
+              value="anonymous"
+              control={<Radio />}
+              label="익명"
+            />
+          </RadioGroup>
+        </FormControl>
       </UserInfo>
       <ReviewInputArea
         onChange={(e) => setInputValue(e.target.value)}
@@ -52,51 +58,45 @@ const ReviewInput = () => {
       >
         등록
       </ReviewInputButton>
-    </>
+    </ReviewInputContainer>
   )
 }
 
-export default ReviewInput
-
+const ReviewInputContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+`
 const ReviewInputHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 1rem;
 `
 const UserInfo = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  font-size: 1.1rem;
+  justify-content: center;
 `
 const ReviewInputArea = styled.textarea`
   border: 2px solid #9d9d9d;
   border-radius: 10px;
-  font-size: 0.8rem;
+  font-size: 1rem;
   min-height: 5rem;
   padding: 0.3rem;
-  margin-top: 1rem;
+  margin-top: 0.4rem;
   resize: none;
 `
 const ReviewInputButton = styled.button`
   display: flex;
   background-color: #e599b3;
-  font-weight: bold;
-  font-size: 1rem;
-  margin-top: 1rem;
-  height: 1.3rem;
-  padding: 12px;
+  color: white;
+  font-size: 0.9rem;
+  margin-top: 0.6rem;
+  padding: 0.4rem;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
-  border-color: #e599b3;
+  border-radius: 5px;
 `
-// const  = styled.div``
-// const  = styled.div``
-// const  = styled.div``
-// const  = styled.div``
-// const  = styled.div``
-// const  = styled.div``
-// const  = styled.div``
+
+export default ReviewInput
