@@ -6,7 +6,9 @@ import FacilitiesIcons from '../common/FacilitiesIcons'
 import { NameTypeSection } from '../common/PlaceInfo'
 import Text, { StyledText } from '../common/Text'
 import ChargerInfoToggle from './ChargerInfoToggle'
-import ReviewList from './ReviewList'
+import ReviewContainer from './ReviewContainer'
+
+import Rating from '@mui/material/Rating'
 
 const Detail = () => {
   const place: PlaceInfoType = placeDetail.response
@@ -30,18 +32,22 @@ const Detail = () => {
         </AddressText>
         {reviewAverageCount && (
           <ReviewAverageCountSection>
-            {reviewAverageCount.average}
+            <Rating
+              value={reviewAverageCount.average}
+              precision={0.1}
+              size="small"
+              readOnly
+            />
+            <Text size={0.8}>({reviewAverageCount.average})</Text>
             <Text>
-              (리뷰 <b>{reviewAverageCount.count}</b>
-              개)
+              리뷰 <b>{reviewAverageCount.count}</b>개
             </Text>
           </ReviewAverageCountSection>
         )}
         <FacilitiesIcons place={place} size={50} hasDescription />
       </DetailInfoSection>
       <ChargerInfoToggle />
-      {/* <ReviewPage locationId={id} /> */}
-      <ReviewList />
+      <ReviewContainer />
     </DetailContainer>
   )
 }
@@ -61,6 +67,10 @@ const AddressText = styled(StyledText)`
 const ReviewAverageCountSection = styled.section`
   display: flex;
   margin: 1rem 0;
+  align-items: center;
+  ${StyledText}:last-of-type {
+    margin-left: 0.6rem;
+  }
 `
 
 export default Detail

@@ -6,18 +6,25 @@ import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import FormControl from '@mui/material/FormControl'
+import Rating from '@mui/material/Rating'
 
 const ReviewInput = () => {
   const [userType, setUserType] = useState('anonymous')
   const [inputValue, setInputValue] = useState('')
+  const [rate, setRate] = useState<number | null>(0)
 
   return (
     <ReviewInputContainer>
       <ReviewInputHeader>
-        <Text size={1.2} bold>
-          리뷰
+        <Text size={1.1} bold>
+          리뷰 작성하기
         </Text>
-        {/* <Rating onClick={handleRating} ratingValue={rating} /> */}
+        <Rating
+          value={rate}
+          onChange={(_, newRate) => {
+            setRate(newRate)
+          }}
+        />
       </ReviewInputHeader>
       <UserInfo>
         <FormControl>
@@ -53,7 +60,7 @@ const ReviewInput = () => {
         onClick={() => {
           // postReview(userType, locationId, inputValue, rating)
           setInputValue('')
-          // setRating(0)
+          setRate(0)
         }}
       >
         등록
