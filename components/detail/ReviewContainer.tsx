@@ -2,6 +2,8 @@ import styled from '@emotion/styled'
 import { useState } from 'react'
 import { reviewAverageCount } from '../../data'
 import Text from '../common/Text'
+import ReviewInput from './ReviewInput'
+import ReviewList from './ReviewList'
 
 // TODO: set location id
 const ReviewContainer = () => {
@@ -30,6 +32,8 @@ const ReviewContainer = () => {
           </SelectSort>
         </ReviewSortContainer>
       </ReviewContainerHeader>
+      <ReviewInput />
+      <ReviewList />
     </>
   )
 }
