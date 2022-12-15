@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import React, { useState, useEffect } from 'react'
-import Text from '../common/Text'
+import Text, { StyledText } from '../common/Text'
 
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
@@ -16,17 +16,16 @@ const ReviewInput = () => {
   return (
     <ReviewInputContainer>
       <ReviewInputHeader>
-        <Text size={1.1} bold>
-          리뷰 작성하기
-        </Text>
-        <Rating
-          value={rate}
-          onChange={(_, newRate) => {
-            setRate(newRate)
-          }}
-        />
-      </ReviewInputHeader>
-      <UserInfo>
+        <UserInfo>
+          <Text>평점</Text>
+          <Rating
+            value={rate}
+            precision={0.5}
+            onChange={(_, newRate) => {
+              setRate(newRate)
+            }}
+          />
+        </UserInfo>
         <FormControl>
           <RadioGroup
             row
@@ -35,22 +34,23 @@ const ReviewInput = () => {
           >
             <FormControlLabel
               value="disabled"
-              control={<Radio />}
+              control={<Radio size="small" />}
               label="장애인"
             />
             <FormControlLabel
               value="able"
-              control={<Radio />}
+              control={<Radio size="small" />}
               label="비장애인"
             />
             <FormControlLabel
               value="anonymous"
-              control={<Radio />}
+              control={<Radio size="small" />}
               label="익명"
             />
           </RadioGroup>
         </FormControl>
-      </UserInfo>
+      </ReviewInputHeader>
+
       <ReviewInputArea
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="리뷰는 익명으로 등록됩니다."
@@ -84,6 +84,9 @@ const UserInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${StyledText} {
+    margin-right: 0.2rem;
+  }
 `
 const ReviewInputArea = styled.textarea`
   border: 2px solid #9d9d9d;

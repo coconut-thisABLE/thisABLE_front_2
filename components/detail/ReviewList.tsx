@@ -1,7 +1,9 @@
 import styled from '@emotion/styled'
 import Image from 'next/image'
 import { reviews } from '../../data'
-import Text from '../common/Text'
+import Text, { StyledText } from '../common/Text'
+
+import Rating from '@mui/material/Rating'
 
 const ReviewList = () => {
   return (
@@ -10,7 +12,12 @@ const ReviewList = () => {
         <ReviewContainer>
           <ReviewInfoWrapper>
             <ReviewStarUserTypeWrapper>
-              {/* <Rating ratingValue={review.star * 20} readonly size={25} /> */}
+              <Rating
+                value={review.star}
+                precision={0.5}
+                size="small"
+                readOnly
+              />
               <Text color="#f0a044" size={0.9}>
                 {review.userType}
               </Text>
@@ -72,6 +79,9 @@ const ReviewInfoWrapper = styled.div`
 const ReviewStarUserTypeWrapper = styled.div`
   display: flex;
   align-items: center;
+  ${StyledText} {
+    margin-left: 0.4rem;
+  }
 `
 const ReviewText = styled.p`
   font-size: 1rem;
