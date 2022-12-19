@@ -9,7 +9,7 @@ const ReviewList = () => {
   return (
     <ReviewListContainer>
       {reviews?.data?.map((review) => (
-        <ReviewContainer>
+        <ReviewContainer key={review._id}>
           <ReviewInfoWrapper>
             <ReviewStarUserTypeWrapper>
               <Rating
