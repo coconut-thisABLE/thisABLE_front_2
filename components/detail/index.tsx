@@ -1,5 +1,6 @@
-import Link from 'next/link'
 import styled from '@emotion/styled'
+import { Dispatch, SetStateAction } from 'react'
+import { useRouter } from 'next/router'
 import { placeDetail, reviewAverageCount } from '../../data'
 import { PlaceInfoType } from '../../types'
 import FacilitiesIcons from '../common/FacilitiesIcons'
@@ -10,13 +11,20 @@ import ReviewContainer from './ReviewContainer'
 
 import Rating from '@mui/material/Rating'
 
-const Detail = () => {
+type DetailPropsType = {
+  setIsDetailOpen?: Dispatch<SetStateAction<boolean>>
+}
+
+const Detail = ({ setIsDetailOpen }: DetailPropsType) => {
   const place: PlaceInfoType = placeDetail.response
   // TODO: 동적 id와 실데이터 연결
-
+  const router = useRouter()
+  
   return (
     <DetailContainer>
-      <Link href={`/`}>◀ 뒤로 가기</Link>
+      <button onClick={() => (setIsDetailOpen ? setIsDetailOpen(false) : router.push('/'))}>
+        ◀ 뒤로 가기
+      </button>
       {/* TODO: 모바일 환경에서는 /list (리스트로 가기) */}
       <DetailInfoSection>
         <NameTypeSection>
