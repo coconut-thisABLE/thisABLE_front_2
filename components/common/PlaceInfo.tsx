@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { PlaceInfoType } from '../../types'
 import { conceptColors } from './BaseLayout'
@@ -5,8 +6,16 @@ import Text from './Text'
 import FacilitiesIcons from './FacilitiesIcons'
 
 const PlaceInfo = ({ place }: { place: PlaceInfoType }) => {
+  const router = useRouter()
+
+  const onClickPlaceInfo = () => {
+    router.push({
+      query: { id: place._id },
+    })
+  }
+
   return (
-    <PlaceInfoContainer>
+    <PlaceInfoContainer onClick={onClickPlaceInfo}>
       <DefaultInfoSection>
         <NameTypeSection>
           <Text size={1.1} bold>
