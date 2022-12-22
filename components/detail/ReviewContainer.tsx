@@ -1,13 +1,14 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
 import { reviewAverageCount } from '../../data'
+import { ReviewSortType } from '../../types/state'
 import Text from '../common/Text'
 import ReviewInput from './ReviewInput'
 import ReviewList from './ReviewList'
 
 // TODO: set location id
 const ReviewContainer = () => {
-  const [sort, setSort] = useState('recommended')
+  const [sort, setSort] = useState<ReviewSortType>('recommended')
 
   return (
     <>

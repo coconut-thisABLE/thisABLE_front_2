@@ -7,10 +7,11 @@ import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import FormControl from '@mui/material/FormControl'
 import Rating from '@mui/material/Rating'
+import { ReviewUserType } from '../../types/state'
 
 const ReviewInput = () => {
-  const [userType, setUserType] = useState('anonymous')
-  const [inputValue, setInputValue] = useState('')
+  const [userType, setUserType] = useState<ReviewUserType>('anonymous')
+  const [inputValue, setInputValue] = useState<string>('')
   const [rate, setRate] = useState<number | null>(0)
 
   return (
@@ -30,7 +31,7 @@ const ReviewInput = () => {
           <RadioGroup
             row
             value={userType}
-            onChange={(e) => setUserType(e.target.value)}
+            onChange={(e) => setUserType(e.target.value as ReviewUserType)}
           >
             <FormControlLabel
               value="disabled"
