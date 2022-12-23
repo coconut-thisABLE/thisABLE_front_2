@@ -57,3 +57,21 @@ export interface ReviewAverageCountType {
   count: number
   average: number
 }
+
+// 리뷰 리스트
+export interface ReviewDataType {
+  _id: string
+  locationId: number
+  userId: string | null
+  userType: string
+  good: number
+  bad: number
+  detail: string
+  star: number
+  createdAt: string
+}
+
+export interface ReviewListType {
+  message: string
+  data: ReviewDataType[]
+}

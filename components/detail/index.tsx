@@ -1,20 +1,25 @@
 import styled from '@emotion/styled'
+import { Dispatch, SetStateAction } from 'react'
+import { useRouter } from 'next/router'
 import { placeDetail, reviewAverageCount } from '../../data'
 import { PlaceInfoType } from '../../types'
 import FacilitiesIcons from '../common/FacilitiesIcons'
 import { NameTypeSection } from '../common/PlaceInfo'
 import Text, { StyledText } from '../common/Text'
 import ChargerInfoToggle from './ChargerInfoToggle'
-import { Dispatch, SetStateAction } from 'react'
-import { useRouter } from 'next/router'
+import ReviewContainer from './ReviewContainer'
+
+import Rating from '@mui/material/Rating'
 
 type DetailPropsType = {
   setIsDetailOpen?: Dispatch<SetStateAction<boolean>>
 }
+
 const Detail = ({ setIsDetailOpen }: DetailPropsType) => {
   const place: PlaceInfoType = placeDetail.response
   // TODO: 동적 id와 실데이터 연결
   const router = useRouter()
+  
   return (
     <DetailContainer>
       <button onClick={() => (setIsDetailOpen ? setIsDetailOpen(false) : router.push('/'))}>
@@ -35,17 +40,22 @@ const Detail = ({ setIsDetailOpen }: DetailPropsType) => {
         </AddressText>
         {reviewAverageCount && (
           <ReviewAverageCountSection>
-            {reviewAverageCount.average}
+            <Rating
+              value={reviewAverageCount.average}
+              precision={0.1}
+              size="small"
+              readOnly
+            />
+            <Text size={0.8}>({reviewAverageCount.average})</Text>
             <Text>
-              (리뷰 <b>{reviewAverageCount.count}</b>
-              개)
+              리뷰 <b>{reviewAverageCount.count}</b>개
             </Text>
           </ReviewAverageCountSection>
         )}
         <FacilitiesIcons place={place} size={50} hasDescription />
       </DetailInfoSection>
       <ChargerInfoToggle />
-      {/* <ReviewPage locationId={id} /> */}
+      <ReviewContainer />
     </DetailContainer>
   )
 }
@@ -65,6 +75,10 @@ const AddressText = styled(StyledText)`
 const ReviewAverageCountSection = styled.section`
   display: flex;
   margin: 1rem 0;
+  align-items: center;
+  ${StyledText}:last-of-type {
+    margin-left: 0.6rem;
+  }
 `
 
 export default Detail

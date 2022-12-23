@@ -96,3 +96,34 @@ export const reviewAverageCount = {
   count: 5,
   average: 4.5,
 }
+
+// 리뷰 리스트
+export const reviews = {
+  message: 'List Review of location number 1 Success',
+  data: [
+    {
+      _id: '62343510c3dd5a345c6431d4',
+      locationId: 1,
+      userId: null,
+      userType: 'anonymous',
+      good: 1,
+      bad: 2,
+      detail:
+        '매장이 넓고 경사로가 있어서 이용하기 편리했어요 카페 내부도 예뻐요! 입구는 하나라 경사로 찾기 쉬울 것 같아요',
+      star: 4.5,
+      createdAt: '2022-03-18T09:40:53.077Z',
+    },
+    {
+      _id: '62343510c3dd5a345c6431d5',
+      locationId: 2,
+      userId: null,
+      userType: 'anonymous',
+      good: 1,
+      bad: 3,
+      detail:
+        '매장이 넓고 경사로가 있어서 이용하기 편리했어요 카페 내부도 예뻐요!',
+      star: 4.2,
+      createdAt: '2022-03-19T09:40:53.077Z',
+    },
+  ],
+}
