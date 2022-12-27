@@ -1,51 +1,55 @@
 import styled from '@emotion/styled'
-import { placeDetail, reviewAverageCount } from '../../data'
+import { useRouter } from 'next/router'
 import { PlaceInfoType } from '../../types'
 import FacilitiesIcons from '../common/FacilitiesIcons'
 import { NameTypeSection } from '../common/PlaceInfo'
 import Text, { StyledText } from '../common/Text'
 import ChargerInfoToggle from './ChargerInfoToggle'
-import { Dispatch, SetStateAction } from 'react'
-import { useRouter } from 'next/router'
+import { usePlaceDetailQuery } from '../../api/usePlaceDetailQuery'
+import { useReviewAverageCountQuery } from '../../api/useReviewAverageCountQuery'
 
-type DetailPropsType = {
-  setIsDetailOpen?: Dispatch<SetStateAction<boolean>>
-}
-const Detail = ({ setIsDetailOpen }: DetailPropsType) => {
-  const place: PlaceInfoType = placeDetail.response
-  // TODO: 동적 id와 실데이터 연결
+const Detail = () => {
   const router = useRouter()
+  const id = router.query?.id as string
+  const { data: placeDetail } = usePlaceDetailQuery(+id)
+  const place: PlaceInfoType = placeDetail?.response
+  const { data: reviewAverageCount } = useReviewAverageCountQuery(+id)
+
   return (
     <DetailContainer>
-      <button onClick={() => (setIsDetailOpen ? setIsDetailOpen(false) : router.push('/'))}>
-        ◀ 뒤로 가기
-      </button>
       {/* TODO: 모바일 환경에서는 /list (리스트로 가기) */}
-      <DetailInfoSection>
-        <NameTypeSection>
-          <Text size={1.2} bold>
-            {place.name}
-          </Text>
-          <Text color="#00B8E0" size={0.8}>
-            {place.locationType}
-          </Text>
-        </NameTypeSection>
-        <AddressText color="#b0b0b0" size={0.8}>
-          {place.address}
-        </AddressText>
-        {reviewAverageCount && (
-          <ReviewAverageCountSection>
-            {reviewAverageCount.average}
-            <Text>
-              (리뷰 <b>{reviewAverageCount.count}</b>
-              개)
-            </Text>
-          </ReviewAverageCountSection>
-        )}
-        <FacilitiesIcons place={place} size={50} hasDescription />
-      </DetailInfoSection>
-      <ChargerInfoToggle />
-      {/* <ReviewPage locationId={id} /> */}
+      <button onClick={() => router.push('/')}>◀ 뒤로 가기</button>
+      {place ? (
+        <>
+          <DetailInfoSection>
+            <NameTypeSection>
+              <Text size={1.2} bold>
+                {place.name}
+              </Text>
+              <Text color="#00B8E0" size={0.8}>
+                {place.locationType}
+              </Text>
+            </NameTypeSection>
+            <AddressText color="#b0b0b0" size={0.8}>
+              {place.address}
+            </AddressText>
+            {reviewAverageCount && (
+              <ReviewAverageCountSection>
+                {reviewAverageCount.average}
+                <Text>
+                  (리뷰 <b>{reviewAverageCount.count}</b>
+                  개)
+                </Text>
+              </ReviewAverageCountSection>
+            )}
+            <FacilitiesIcons place={place} size={50} hasDescription />
+          </DetailInfoSection>
+          <ChargerInfoToggle />
+          {/* <ReviewPage locationId={id} /> */}
+        </>
+      ) : (
+        <div>정보가 없습니다.</div>
+      )}
     </DetailContainer>
   )
 }
