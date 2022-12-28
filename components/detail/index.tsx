@@ -5,8 +5,11 @@ import FacilitiesIcons from '../common/FacilitiesIcons'
 import { NameTypeSection } from '../common/PlaceInfo'
 import Text, { StyledText } from '../common/Text'
 import ChargerInfoToggle from './ChargerInfoToggle'
+import ReviewContainer from './ReviewContainer'
 import { usePlaceDetailQuery } from '../../api/usePlaceDetailQuery'
 import { useReviewAverageCountQuery } from '../../api/useReviewAverageCountQuery'
+
+import Rating from '@mui/material/Rating'
 
 const Detail = () => {
   const router = useRouter()
@@ -35,7 +38,13 @@ const Detail = () => {
             </AddressText>
             {reviewAverageCount && (
               <ReviewAverageCountSection>
-                {reviewAverageCount.average}
+                <Rating
+                  value={reviewAverageCount.average}
+                  precision={0.1}
+                  size="small"
+                  readOnly
+                />
+                <Text size={0.8}>({reviewAverageCount.average})</Text>
                 <Text>
                   (리뷰 <b>{reviewAverageCount.count}</b>
                   개)
@@ -45,7 +54,7 @@ const Detail = () => {
             <FacilitiesIcons place={place} size={50} hasDescription />
           </DetailInfoSection>
           <ChargerInfoToggle />
-          {/* <ReviewPage locationId={id} /> */}
+          <ReviewContainer />
         </>
       ) : (
         <div>정보가 없습니다.</div>
@@ -69,6 +78,10 @@ const AddressText = styled(StyledText)`
 const ReviewAverageCountSection = styled.section`
   display: flex;
   margin: 1rem 0;
+  align-items: center;
+  ${StyledText}:last-of-type {
+    margin-left: 0.6rem;
+  }
 `
 
 export default Detail
