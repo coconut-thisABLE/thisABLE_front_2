@@ -22,7 +22,7 @@ const PlaceListContainer = styled.div`
   border: 2px solid #e599b3;
   box-sizing: border-box;
   border-radius: 10px;
-  margin: 1rem 1.2rem;
+  margin: 1rem 0;
   padding: 0.6rem;
   min-width: 18rem;
 `

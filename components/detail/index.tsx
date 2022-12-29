@@ -22,43 +22,37 @@ const Detail = () => {
     <DetailContainer>
       {/* TODO: 모바일 환경에서는 /list (리스트로 가기) */}
       <button onClick={() => router.push('/')}>◀ 뒤로 가기</button>
-      {place ? (
-        <>
-          <DetailInfoSection>
-            <NameTypeSection>
-              <Text size={1.2} bold>
-                {place.name}
-              </Text>
-              <Text color="#00B8E0" size={0.8}>
-                {place.locationType}
-              </Text>
-            </NameTypeSection>
-            <AddressText color="#b0b0b0" size={0.8}>
-              {place.address}
-            </AddressText>
-            {reviewAverageCount && (
-              <ReviewAverageCountSection>
-                <Rating
-                  value={reviewAverageCount.average}
-                  precision={0.1}
-                  size="small"
-                  readOnly
-                />
-                <Text size={0.8}>({reviewAverageCount.average})</Text>
-                <Text>
-                  (리뷰 <b>{reviewAverageCount.count}</b>
-                  개)
-                </Text>
-              </ReviewAverageCountSection>
-            )}
-            <FacilitiesIcons place={place} size={50} hasDescription />
-          </DetailInfoSection>
-          <ChargerInfoToggle />
-          <ReviewContainer />
-        </>
-      ) : (
-        <div>정보가 없습니다.</div>
-      )}
+      <DetailInfoSection>
+        <NameTypeSection>
+          <Text size={1.2} bold>
+            {place?.name ?? '장소이름'}
+          </Text>
+          <Text color="#00B8E0" size={0.8}>
+            {place?.locationType ?? '지하철'}
+          </Text>
+        </NameTypeSection>
+        <AddressText color="#b0b0b0" size={0.8}>
+          {place?.address}
+        </AddressText>
+        {reviewAverageCount && (
+          <ReviewAverageCountSection>
+            <Rating
+              value={reviewAverageCount.average}
+              precision={0.1}
+              size="small"
+              readOnly
+            />
+            <Text size={0.8}>({reviewAverageCount?.average})</Text>
+            <Text>
+              (리뷰 <b>{reviewAverageCount?.count ?? 0}</b>
+              개)
+            </Text>
+          </ReviewAverageCountSection>
+        )}
+        {place && <FacilitiesIcons place={place} size={50} hasDescription />}
+      </DetailInfoSection>
+      <ChargerInfoToggle />
+      <ReviewContainer />
     </DetailContainer>
   )
 }

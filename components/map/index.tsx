@@ -90,6 +90,7 @@ const Map = () => {
       </FilterContainer>
       {places?.map((place) => (
         <Marker
+          key={place._id}
           position={{ lat: place.latitude, lng: place.longitude }}
           onClick={() => handleActiveMarker(place._id)}
           icon={selectMarker(place.locationType)}
