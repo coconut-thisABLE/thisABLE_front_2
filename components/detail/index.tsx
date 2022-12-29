@@ -1,42 +1,38 @@
 import styled from '@emotion/styled'
-import { Dispatch, SetStateAction } from 'react'
 import { useRouter } from 'next/router'
-import { placeDetail, reviewAverageCount } from '../../data'
 import { PlaceInfoType } from '../../types'
 import FacilitiesIcons from '../common/FacilitiesIcons'
 import { NameTypeSection } from '../common/PlaceInfo'
 import Text, { StyledText } from '../common/Text'
 import ChargerInfoToggle from './ChargerInfoToggle'
 import ReviewContainer from './ReviewContainer'
+import { usePlaceDetailQuery } from '../../api/usePlaceDetailQuery'
+import { useReviewAverageCountQuery } from '../../api/useReviewAverageCountQuery'
 
 import Rating from '@mui/material/Rating'
 
-type DetailPropsType = {
-  setIsDetailOpen?: Dispatch<SetStateAction<boolean>>
-}
-
-const Detail = ({ setIsDetailOpen }: DetailPropsType) => {
-  const place: PlaceInfoType = placeDetail.response
-  // TODO: 동적 id와 실데이터 연결
+const Detail = () => {
   const router = useRouter()
-  
+  const id = router.query?.id as string
+  const { data: placeDetail } = usePlaceDetailQuery(+id)
+  const place: PlaceInfoType = placeDetail?.response
+  const { data: reviewAverageCount } = useReviewAverageCountQuery(+id)
+
   return (
     <DetailContainer>
-      <button onClick={() => (setIsDetailOpen ? setIsDetailOpen(false) : router.push('/'))}>
-        ◀ 뒤로 가기
-      </button>
       {/* TODO: 모바일 환경에서는 /list (리스트로 가기) */}
+      <button onClick={() => router.push('/')}>◀ 뒤로 가기</button>
       <DetailInfoSection>
         <NameTypeSection>
           <Text size={1.2} bold>
-            {place.name}
+            {place?.name ?? '장소이름'}
           </Text>
           <Text color="#00B8E0" size={0.8}>
-            {place.locationType}
+            {place?.locationType ?? '지하철'}
           </Text>
         </NameTypeSection>
         <AddressText color="#b0b0b0" size={0.8}>
-          {place.address}
+          {place?.address}
         </AddressText>
         {reviewAverageCount && (
           <ReviewAverageCountSection>
@@ -46,13 +42,14 @@ const Detail = ({ setIsDetailOpen }: DetailPropsType) => {
               size="small"
               readOnly
             />
-            <Text size={0.8}>({reviewAverageCount.average})</Text>
+            <Text size={0.8}>({reviewAverageCount?.average})</Text>
             <Text>
-              리뷰 <b>{reviewAverageCount.count}</b>개
+              (리뷰 <b>{reviewAverageCount?.count ?? 0}</b>
+              개)
             </Text>
           </ReviewAverageCountSection>
         )}
-        <FacilitiesIcons place={place} size={50} hasDescription />
+        {place && <FacilitiesIcons place={place} size={50} hasDescription />}
       </DetailInfoSection>
       <ChargerInfoToggle />
       <ReviewContainer />

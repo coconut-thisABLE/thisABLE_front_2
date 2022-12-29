@@ -1,17 +1,22 @@
 import { CircularProgress } from '@mui/material'
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
-import { Dispatch, SetStateAction, useState } from 'react'
+import {
+  GoogleMap,
+  Marker,
+  InfoWindow,
+  useJsApiLoader,
+} from '@react-google-maps/api'
+import { useState } from 'react'
 import Image from 'next/image'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
+import { usePlaceListQuery } from '../../api/usePlaceListQuery'
+import PlaceInfo from '../common/PlaceInfo'
 
 export type CategoryType = {
   title: string
   image?: string
 }
-type MapPropsType = {
-  setChosenLocation?: Dispatch<SetStateAction<string>>
-}
+
 export const CategoryList: CategoryType[] = [
   {
     title: '장애인 화장실',
@@ -29,13 +34,12 @@ export const CategoryList: CategoryType[] = [
   { title: '모두 보기' },
 ]
 
-const Map = ({
-  setChosenLocation = () => console.log('clicked'),
-}: MapPropsType) => {
+const Map = () => {
   const initialLat = 37.544127
   const initialLng = 126.9667812
   const [lat, setLat] = useState<number>(initialLat)
   const [lng, setLng] = useState<number>(initialLng)
+  const [activeMarker, setActiveMarker] = useState<number | null>(null)
   const [category, setCategory] = useState<string>('')
   const router = useRouter()
   const { isLoaded } = useJsApiLoader({
@@ -44,6 +48,24 @@ const Map = ({
   const handleCategoryClick = (category: string) => {
     category === '모두 보기' ? router.push('/list') : setCategory(category)
   }
+  const { data: placeListData } = usePlaceListQuery(1)
+  const places = placeListData.results
+
+  const selectMarker = (locationType: string) => {
+    return {
+      restaurant: 'images/restaurant.svg',
+      accommodation: 'images/hotel.svg',
+      shoppingmall: 'images/mall.svg',
+      subway: 'images/subway.svg',
+      administrative: 'images/business.svg',
+      cultural: 'images/culture.svg',
+    }[locationType]
+  }
+
+  const handleActiveMarker = (marker: number) => {
+    if (marker === activeMarker) return
+    setActiveMarker(marker)
+  }
 
   //TODO: fix onClick  - use placeId
   return isLoaded ? (
@@ -51,9 +73,7 @@ const Map = ({
       mapContainerStyle={{ height: '94vh', width: '100%' }}
       zoom={18}
       center={{ lat: +lat, lng: +lng }}
-      onClick={() => {
-        setChosenLocation(Math.random().toString())
-      }}
+      onClick={() => setActiveMarker(null)}
     >
       <FilterContainer>
         {CategoryList.map((category: CategoryType) => (
@@ -68,7 +88,20 @@ const Map = ({
           </FilterButton>
         ))}
       </FilterContainer>
-      {/* {renderMarker} */}
+      {places?.map((place) => (
+        <Marker
+          key={place._id}
+          position={{ lat: place.latitude, lng: place.longitude }}
+          onClick={() => handleActiveMarker(place._id)}
+          icon={selectMarker(place.locationType)}
+        >
+          {activeMarker === place._id ? (
+            <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+              <PlaceInfo place={place} />
+            </InfoWindow>
+          ) : null}
+        </Marker>
+      ))}
       <Marker position={{ lat: +lat, lng: +lng }} icon="images/myself.svg" />;
     </GoogleMap>
   ) : (
