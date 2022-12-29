@@ -1,12 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import { apiClient } from './apiClient'
 import { ReviewAverageCountType } from '../types'
 
-const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  withCredentials: false,
-})
-
+// TODO: back error check
 const fetchReviewAverageCount = async (
   locationId: number
 ): Promise<ReviewAverageCountType> => {

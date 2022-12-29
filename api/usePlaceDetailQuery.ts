@@ -1,11 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import { apiClient } from './apiClient'
 import { PlaceDetailType } from '../types'
-
-const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  withCredentials: false,
-})
 
 const fetchPlaceDetail = async (
   locationId: number
